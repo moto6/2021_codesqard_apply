@@ -5,7 +5,7 @@
 #include <queue>
 #include <algorithm>
 #include <cstdio>
-#include <ctime>
+
 #include "cube.hpp"
 using namespace std;
 
@@ -14,11 +14,11 @@ Cube Chandler;
 
 int main(void) {
     
+    time_t startTime = time(NULL);
     string buf,testbuffer;
     queue<string> tasks;
     vector<string> ins_v;
-    time_t curTime, startTime;
-    startTime = time(NULL);
+    
     c_init(&Chandler);
     int iter = 0;
     
@@ -28,12 +28,7 @@ int main(void) {
         cin >> buf;
 
         if (buf == "Q" || buf == "q") {//종료기능
-            curTime = time(NULL);
-		    cout << "Elapsed time : "<< to_string(curTime-startTime)<<endl; 
-            cout << "Additional implemented functions : " << endl;
-            cout << "\tRandom Shuffle //  Time Display // Fit all sides"<<endl;
-            cout << "Number of operations : " << iter << endl;
-            cout << "\nBye~";
+            c_finalize(&startTime, iter);
             break;
         }
         else if (buf[0] =='T'){// 테스트 케이스 돌리기
@@ -70,7 +65,11 @@ int main(void) {
         }
 
         if(is_Fitallsides(&Chandler) && iter>=1) {
-            
+            cout << "\n\n ====== Congratulations! =====\n";
+            cout << "You have hit all faces!\n";
+            cout << "this program will close automatically.\n\n\n";
+            c_finalize(&startTime, iter);
+            break;
         }
     }
     return 0;

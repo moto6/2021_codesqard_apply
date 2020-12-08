@@ -176,8 +176,17 @@ void c_helper(void) {
 }
 
 
-int c_finalize(void) {
+void c_finalize(time_t *startTime, int iter) {
     
+    time_t curTime;
+    curTime = time(NULL);
+    cout << "\n\n ====== Bye~ Bye~ =====\n";
+    cout << "Elapsed time : "<< to_string(curTime-(*startTime))<<endl; 
+    cout << "Additional implemented functions : " << endl;
+    cout << "\t- Random Shuffle \n\t- Time Display \n\t- Fit all sides"<<endl;
+    cout << "Number of operations : " << iter << endl;
+    cout << "\n \tEND";
+    return;
 }
 
 bool is_Fitallsides(Cube* handler) {
