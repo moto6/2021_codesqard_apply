@@ -1,4 +1,3 @@
-
 #include "cube.hpp"
 #include <iostream>
 #include <string>
@@ -10,9 +9,7 @@
 #include <random>
 using namespace std;
 
-
 extern Cube Chandler;
-
 
 void testapp(int mod) {
     const bool DEBUG = 1; // 1:debug // 0:deploy
@@ -24,11 +21,11 @@ void testapp(int mod) {
     // 5 : Cube action 
 
     int TESTMODULE = mod;
-    
     c_init(&Chandler);
     string buf,testbuffer;
     queue<string> tasks;
-    //test : init, and printer
+
+    //test1 : init, and printer
     if (DEBUG && TESTMODULE == 1) {
         cout << "TEST1 [printer] go? insert \"go\">> ";
         cin >> testbuffer;
@@ -37,9 +34,7 @@ void testapp(int mod) {
         cout  << endl;
     }
     
-
-
-    //test : c_s2task
+    //test2 : c_s2task
     //string to task : UUR -> U,U,R
     else if (DEBUG && TESTMODULE == 2) {
         cout << "TEST2 [c_s2task] insert String>> ";
@@ -50,9 +45,9 @@ void testapp(int mod) {
         }
     }
 
-
+    //test 3: Random tasks
     else if (DEBUG && TESTMODULE == 3) {
-        cout << "TEST4 [CMD_isValid] \n"
+        cout << "TEST4 [Random tasks] \n"
             <<"Generate Random tasks? (Press Any Key+ ENTER)";
         cin >> testbuffer;
         vector<string> tv = c_rsfl();
@@ -61,8 +56,7 @@ void testapp(int mod) {
         }
     }
 
-
-
+    //test 4 : CMD_isValid
     else if (DEBUG && TESTMODULE == 4) {
         cout << "TEST4 [CMD_isValid] insert char>> ";
         cin >> testbuffer;
@@ -72,9 +66,9 @@ void testapp(int mod) {
         else {
             cout << testbuffer << "..? UNKNOWN cmd....." << endl;
         }
-
     }
 
+    //test 5 : action, do cube sim core
     else if (DEBUG && TESTMODULE == 5) {
         
         cout << "TEST5 [c_act] :"<< " F R U B L D\n"
@@ -126,7 +120,6 @@ void c_print(Cube* handler) {
     }
     cout << endl;
     
-
     //mid
     for (int i = 0; i < 3; i++) {
         for (int j = 1; j <=4 ; j++) {
@@ -177,7 +170,6 @@ void c_helper(void) {
 
 
 void c_finalize(time_t *startTime, int iter) {
-    
     time_t curTime;
     curTime = time(NULL);
     cout << "\n\n ====== Bye~ Bye~ =====\n";
@@ -204,8 +196,6 @@ bool is_Fitallsides(Cube* handler) {
     return true;
 }
 
-
-
 vector<string> c_rsfl() {
     random_device rd;
     minstd_rand gen(rd());
@@ -213,17 +203,14 @@ vector<string> c_rsfl() {
     
     vector<string> add_task;//cube random shuffle
     //char sub[] = "FRUBLD";
-    string cmdlist[10]= {"R","U","L","B","F'","R'","U'","B'","L'","D'"};
-    
+    string cmdlist[10]= {"R","U","L","B","F'","R'","U'","B'","L'","D'"};  
     int count = dis(gen);
     count = count%3;
-
 
     //랜덤값 뽑아서넣어주기
     for (int i = 0; i < 5+count; i++) {
         add_task.push_back(cmdlist[dis(gen)%10]);
     }
-       
     return add_task;
 }
 
@@ -261,10 +248,7 @@ vector<string> c_s2task(string s) {
         }
     }
     return ret;
-
 }
-
-
 
 bool CMD_isValid(string cin) {
     const static char CMD_LIST[] = "FRUBLD";//len = 6
@@ -284,7 +268,6 @@ bool CMD_isValid(string cin) {
             }
         }
     }
-
     return false;
 }
 
@@ -317,7 +300,6 @@ int c_act(Cube* c,string s) {
         c->top[2][1] = temp[1];
         c->top[2][2] = temp[2];
     }
-   
     else if (s == "F") {
         // top<<m2<<bot<<m4
         temp[0] = c->top[2][0];
@@ -562,17 +544,10 @@ int c_act(Cube* c,string s) {
         c->m1[2][1] = temp[1];
         c->m1[2][2] = temp[2];
     }
-
     else if(s == "C") {
         c_print(c);
     }
-    
-    else {
-        //drop!
-        //
-        
-
-
+    else {//drop!
         cout << "unknown : " << s << endl;
     }
     return 0;

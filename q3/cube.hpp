@@ -11,7 +11,6 @@
 #include <ctime>
 using namespace std;
 
-
 struct _mycube {
     char top[3][3];
     char m1[3][3];
@@ -32,4 +31,5 @@ vector<string> c_s2task(string s);
 vector<string> c_rsfl();
 void c_helper(void);
 bool is_Fitallsides(Cube* handler);
-#endif
+
+#endif // __CUBE_H__

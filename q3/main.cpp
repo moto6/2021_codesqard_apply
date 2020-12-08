@@ -27,14 +27,14 @@ int main(void) {
         cout << PROMPT;
         cin >> buf;
 
-        if (buf == "Q" || buf == "q") {//종료기능
+        if (buf == "Q" || buf == "q") {         // Q : 종료기능
             c_finalize(&startTime, iter);
             break;
         }
-        else if (buf[0] =='T'){// 테스트 케이스 돌리기
+        else if (buf[0] =='T'){                 // T# : 테스트 케이스
             testapp((int)(buf[1]-'0'));
         }
-        else if (buf =="@"){//큐브의 무작위 섞기 기능
+        else if (buf =="@"){                    // @ : 무작위 섞기 기능
             ins_v = c_rsfl();
             cout << "Random Shuffle :";
             for (auto i : ins_v) {
@@ -42,11 +42,10 @@ int main(void) {
                 tasks.push(i);
             }
         }
-        else if(buf == "help" || buf == "H") {
+        else if(buf == "help" || buf == "H") {  // H : 도움말
             c_helper();
         }
-        //이외의 경우, 토큰화 후 의미있는 명령어들을 수행
-        else {
+        else {                                  // 이외 : 입력받은 문자로 큐브동작
             ins_v = c_s2task(buf);
             for (auto i : ins_v) {
                 tasks.push(i);
@@ -54,7 +53,7 @@ int main(void) {
         }
 
 
-        //cube adjust && result print
+        //입력받은 명령어를 처리하여 큐브를 변경
         while (!tasks.empty()) {
             string action_item = tasks.front();
             c_act(&Chandler, action_item);
@@ -74,10 +73,3 @@ int main(void) {
     }
     return 0;
 }
-
-
-
-
-
-////FRR'U2R
-// "F'","R'","U'","B'","L'","D'",
