@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <stack>;
+#include <stack>
 #include <cstdlib>//for atoi
 #include <algorithm>
 
@@ -133,12 +133,3 @@ string pusher(WP ins) {
 	}
 	return ret;
 }
-
-/*
-tmp = ori.substr(len - num+1, num-1);
-		reverse(tmp.begin(), tmp.end());
-
-		ori = ori.substr(0, len - num+1);
-		ret = tmp + ori;
-
-*/
