@@ -21,6 +21,7 @@ struct _mycube {
 }typedef Cube;
 typedef char cSide[3][3];
 
+void testapp(int mod);
 bool CMD_isValid(string cin);
 int c_act(Cube* c,string s);
 void c_print(Cube* handler);

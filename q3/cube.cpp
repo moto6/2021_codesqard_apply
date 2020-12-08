@@ -15,75 +15,84 @@ extern Cube Chandler;
 
 
 void testapp(int mod) {
-    int DEBUG = 1;
+    const bool DEBUG = 1; // 1:debug // 0:deploy
+    //const int TESTMODULE;
+    // 1 : init, print
+    // 2 : string to task
+    // 3 : Random shuffle function ->c_rsfl
+    // 4 : CMD_isValid -> bool CMD_isValid(char c) {
+    // 5 : Cube action 
+
     int TESTMODULE = mod;
     
     c_init(&Chandler);
     string buf,testbuffer;
     queue<string> tasks;
-    while (1) {
-        //test : init, and printer
-        if (DEBUG && TESTMODULE == 1) {
-            cout << "TEST1 [printer] go? insert \"go\">> ";
-            cin >> testbuffer;
-            c_init(&Chandler);
-            c_print(&Chandler);
-            cout  << endl;
-        }
-        
+    //test : init, and printer
+    if (DEBUG && TESTMODULE == 1) {
+        cout << "TEST1 [printer] go? insert \"go\">> ";
+        cin >> testbuffer;
+        c_init(&Chandler);
+        c_print(&Chandler);
+        cout  << endl;
+    }
+    
 
 
-        //test : c_s2task
-        //string to task : UUR -> U,U,R
-        if (DEBUG && TESTMODULE == 2) {
-            cout << "TEST2 [c_s2task] insert String>> ";
-            cin >> testbuffer;
-            vector<string> tv = c_s2task(testbuffer);
-            for (auto i : tv) {
-                cout << i << endl;
-            }
-        }
-
-
-        if (DEBUG && TESTMODULE == 3) {
-            cout << "TEST4 [CMD_isValid] \n"
-                <<"Generate Random tasks? (Press Any Key+ ENTER)";
-            cin >> testbuffer;
-            vector<string> tv = c_rsfl();
-            for (auto i : tv) {
-                cout << i << endl;
-            }
-        }
-
-
-
-        if (DEBUG && TESTMODULE == 4) {
-            cout << "TEST4 [CMD_isValid] insert char>> ";
-            cin >> testbuffer;
-            if (CMD_isValid(testbuffer)) {
-                cout << testbuffer << "is Valid Commad!!" << endl;
-            }
-            else {
-                cout << testbuffer << "..? UNKNOWN cmd....." << endl;
-            }
-
-        }
-
-        if (DEBUG && TESTMODULE == 5) {
-            
-            cout << "TEST5 [c_act] :"<< " F R U B L D\n"
-                <<"insert string CMD>> ";
-            cin >> testbuffer;
-            if (CMD_isValid(testbuffer)) {
-                c_act(&Chandler,testbuffer);
-                cout << "  \n\n=====  After spin  ======\n" << endl;
-                c_print(&Chandler);
-            }
-            else {
-                cout << "..? UNKNOWN cmd....." << endl;
-            }
+    //test : c_s2task
+    //string to task : UUR -> U,U,R
+    else if (DEBUG && TESTMODULE == 2) {
+        cout << "TEST2 [c_s2task] insert String>> ";
+        cin >> testbuffer;
+        vector<string> tv = c_s2task(testbuffer);
+        for (auto i : tv) {
+            cout << i << endl;
         }
     }
+
+
+    else if (DEBUG && TESTMODULE == 3) {
+        cout << "TEST4 [CMD_isValid] \n"
+            <<"Generate Random tasks? (Press Any Key+ ENTER)";
+        cin >> testbuffer;
+        vector<string> tv = c_rsfl();
+        for (auto i : tv) {
+            cout << i << endl;
+        }
+    }
+
+
+
+    else if (DEBUG && TESTMODULE == 4) {
+        cout << "TEST4 [CMD_isValid] insert char>> ";
+        cin >> testbuffer;
+        if (CMD_isValid(testbuffer)) {
+            cout << testbuffer << "is Valid Commad!!" << endl;
+        }
+        else {
+            cout << testbuffer << "..? UNKNOWN cmd....." << endl;
+        }
+
+    }
+
+    else if (DEBUG && TESTMODULE == 5) {
+        
+        cout << "TEST5 [c_act] :"<< " F R U B L D\n"
+            <<"insert string CMD>> ";
+        cin >> testbuffer;
+        if (CMD_isValid(testbuffer)) {
+            c_act(&Chandler,testbuffer);
+            cout << "  \n\n=====  After spin  ======\n" << endl;
+            c_print(&Chandler);
+        }
+        else {
+            cout << "..? UNKNOWN cmd....." << endl;
+        }
+    }
+    else {
+        cout << "Test is only 1~5"<<endl;
+    }
+    
 }
 
 
