@@ -1,7 +1,31 @@
-//place holder
+#ifndef __CUBE_H__
+#define __CUBE_H__
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <algorithm>
+#include <cstdio>
+using namespace std;
 
 
+struct _mycube {
+    char top[3][3];
+    char m1[3][3];
+    char m2[3][3];
+    char m3[3][3];
+    char m4[3][3];
+    char bot[3][3];
+}typedef Cube;
+typedef char cSide[3][3];
 
-//
+bool CMD_isValid(string cin);
+int c_act(Cube* c,string s);
+void c_print(Cube* handler);
+void c_init(Cube* handler);
+vector<string> c_s2task(string s);
+vector<string> c_rsfl();
 
-
+#endif
