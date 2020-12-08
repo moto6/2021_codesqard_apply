@@ -35,7 +35,7 @@ typedef char cSide[3][3];
 
 
 bool CMD_isValid(string cin);
-int c_act(Cube* handler, string s);
+int c_act(Cube* c, string s);
 vector<string> c_s2task(string s);
 vector<string> c_rsfl();
 void c_print(Cube* handler);
@@ -50,7 +50,7 @@ void c_init(Cube* handler);
 //
 const string PROMPT = "CUBE> ";
 const bool DEBUG = 1; // 1:debug // 0:deploy
-const int TESTMODULE = 2;
+const int TESTMODULE = 1;
 // 1 : init, print
 // 2 : string to task
 // 3 : Random shuffle function ->c_rsfl
@@ -70,9 +70,11 @@ int main(void) {
 
         //test : init, and printer
         if (DEBUG && TESTMODULE == 1) {
+            cout << "TEST1 [printer] go? insert \"go\">> ";
+            cin >> testbuffer;
             c_init(&Chandler);
             c_print(&Chandler);
-            cout << "TEST1 [c_init][c_print]" << endl;
+            cout  << endl;
         }
         
 
@@ -174,7 +176,41 @@ void c_print(Cube* handler) {
     //cube print
     //cube_handler
     cSide* csp = &(handler->top);
+    const string ADJUSTER = "            ";
 
+    //top
+    for (int j = 0; j < 3; j++) {
+        cout << ADJUSTER;
+        for (int k = 0; k < 3; k++) {
+            cout << csp[0][j][k] << ' ';
+        }
+        cout << '\n';
+    }
+    cout << endl;
+    
+
+    //mid
+    for (int i = 0; i < 3; i++) {
+        for (int j = 1; j <=4 ; j++) {
+            for (int k = 0; k < 3; k++) {
+                cout << csp[j][i][k] << ' ';
+            }
+            cout << "  ";
+        }
+        cout << '\n';
+    }
+    cout << endl;
+
+    //bot
+    for (int j = 0; j < 3; j++) {
+        cout << ADJUSTER;
+        for (int k = 0; k < 3; k++) {
+            cout << csp[5][j][k] << ' ';
+        }
+        cout << '\n';
+    }
+    cout << endl;
+    /*
     for (int j = 0; j < 3; j++) {
         for (int k = 0; k < 3; k++) {
             cout << csp[i][j][k] << ' ';
@@ -184,7 +220,7 @@ void c_print(Cube* handler) {
     if (i == 0 || i == 4) {
         cout << "\n\n" << endl;
     }
-
+    */
     return;
 }
 
@@ -255,7 +291,7 @@ bool CMD_isValid(string cin) {
         }
     }
     else {
-        for (int i = 0; i < CMD_LIST_v.size(); i++) {
+        for (int i = 0; i < (int)CMD_LIST_v.size(); i++) {
             if (cin == CMD_LIST_v[i]) {
                 return true;
             }
@@ -266,7 +302,7 @@ bool CMD_isValid(string cin) {
 }
 
 
-int c_act(Cube* handler, string s) {
+int c_act(Cube* c, string s) {
     //명령에 따라서 큐브를 실제로 동작시킴
     //"F'","R'","U'","B'","L'","D'",
     if (s == "F'") {
