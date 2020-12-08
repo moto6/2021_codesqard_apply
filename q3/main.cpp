@@ -23,10 +23,10 @@ struct mcube {
 
 struct _mycube {
     char top[3][3];
-    char si1[3][3];
-    char si2[3][3];
-    char si3[3][3];
-    char si4[3][3];
+    char m1[3][3];
+    char m2[3][3];
+    char m3[3][3];
+    char m4[3][3];
     char bot[3][3];
 }typedef Cube;
 typedef char cSide[3][3];
@@ -305,28 +305,80 @@ bool CMD_isValid(string cin) {
 int c_act(Cube* c, string s) {
     //명령에 따라서 큐브를 실제로 동작시킴
     //"F'","R'","U'","B'","L'","D'",
+    static char temp[3];
     if (s == "F'") {
-        
+        temp[0] = c->m4[0][0];
+        temp[1] = c->m4[1][0];
+        temp[2] = c->m4[2][0];
+        //
+        c->m4[2][0] = c->bot[0][2];
+        c->m4[1][0] = c->bot[0][1];
+        c->m4[0][0] = c->bot[0][0];
+        //
+        c->bot[0][1] = c->m2[1][2];
+        c->bot[0][1] = c->m2[1][2];
+        c->bot[0][1] = c->m2[1][2];
+        //
+        c->m2[1][2] = c->top[2][1];
+        c->m2[1][2] = c->top[2][1];
+        c->m2[1][2] = c->top[2][1];
+        //
+        c->top[2][1] = temp[1];
     }
     else if (s == "F") {
-
+        
     }
     else if (s == "R'") {
 
     }
     else if (s == "R") {
-
+        temp[1] = c->m1[1][2];
+        temp[1] = c->m1[1][2];
+        temp[1] = c->m1[1][2];
+        //
+        c->m1[1][2] = c->bot[1][2];
+        c->m1[1][2] = c->bot[1][2];
+        c->m1[1][2] = c->bot[1][2];
+        //
+        c->bot[1][2] = c->m3[1][0];
+        c->bot[1][2] = c->m3[1][0];
+        c->bot[1][2] = c->m3[1][0];
+        //
+        c->m3[1][0] = c->top[1][2];
+        c->m3[1][0] = c->top[1][2];
+        c->m3[1][0] = c->top[1][2];
+        //
+        c->top[1][2] = temp[1];
     }
     else if (s == "U'") {
         
     }
     else if (s == "U") {
-
+        temp[0] = c->m4[0][0];
+        temp[1] = c->m4[0][1];
+        temp[2] = c->m4[0][2];
+        //
+        c->m4[0][0] = c->m3[0][0];
+        c->m4[0][1] = c->m3[0][1];
+        c->m4[0][2] = c->m3[0][2];
+        //
+        c->m3[0][0] = c->m2[0][0];
+        c->m3[0][1] = c->m2[0][1];
+        c->m3[0][2] = c->m2[0][2];
+        //
+        c->m2[0][0] = c->m1[0][0];
+        c->m2[0][1] = c->m1[0][1];
+        c->m2[0][2] = c->m1[0][2];
+        //
+        c->m1[0][0] = temp[0];
+        c->m1[0][1] = temp[1];
+        c->m1[0][2] = temp[2];
     }
     else if (s == "B'") {
 
     }
     else if (s == "B") {
+        //m2 << bot << m4 << top
 
     }
     else if (s == "L'") {
