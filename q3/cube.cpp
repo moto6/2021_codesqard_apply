@@ -169,12 +169,30 @@ void c_helper(void) {
     cout << "\n" <<endl;
     cout << "4) Additional functions" <<endl;
     cout << "   - Random Shuffle : <@>" <<endl;
-    cout << "" << endl;
+    cout << "   - Fit all sides : <> ,no insert auto triggered" << endl;
     cout << " ===== Help End =====  " << endl;
     cout << "\n\n\n" << endl;
-
-
     return;
+}
+
+
+int c_finalize(void) {
+    
+}
+
+bool is_Fitallsides(Cube* handler) {
+    cSide* ptr = &(handler->top);
+    const char initdata[] = "BWOGYR";
+    for (int k = 0; k < 6; k++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(ptr[k][i][j] != initdata[k]) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }
 
 

@@ -26,7 +26,9 @@ bool CMD_isValid(string cin);
 int c_act(Cube* c,string s);
 void c_print(Cube* handler);
 void c_init(Cube* handler);
+int c_finalize(void);
 vector<string> c_s2task(string s);
 vector<string> c_rsfl();
 void c_helper(void);
+bool is_Fitallsides(Cube* handler);
 #endif

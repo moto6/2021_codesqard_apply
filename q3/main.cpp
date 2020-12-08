@@ -68,9 +68,10 @@ int main(void) {
             c_print(&Chandler);
             iter++;
         }
+
+        if(is_Fitallsides(&Chandler) && iter>=1) {
             
-        
-        
+        }
     }
     return 0;
 }
