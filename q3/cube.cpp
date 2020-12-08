@@ -152,6 +152,33 @@ void c_print(Cube* handler) {
     return;
 }
 
+
+void c_helper(void) {
+    cout << "\n\n\n ===== Help RubixCube Sim ===== "<<endl;
+    cout << "1) Cube simulator"<<endl;
+    cout << "   - Press any key down blow" <<endl;
+    cout << "    : <F>   <R>   <U>   <B>   <L>  <D>"<<endl;
+    cout << "    : <F'>  <R'>  <U'>  <B'>  <L'>  <D'>"<<endl;
+    cout << "    ex) <FRR'U2R> : FRR'UUR"<<endl;
+    cout << "\n" <<endl;
+    cout << "2) Terminate Program"<<endl;
+    cout << "   - Insert : <Q> "<<endl;
+    cout << "\n" <<endl;
+    cout << "3) Unit Test "<<endl;
+    cout << "   - <T1>, <T2>, <T3>, <T4>, <T5>" <<endl;
+    cout << "\n" <<endl;
+    cout << "4) Additional functions" <<endl;
+    cout << "   - Random Shuffle : <@>" <<endl;
+    cout << "" << endl;
+    cout << " ===== Help End =====  " << endl;
+    cout << "\n\n\n" << endl;
+
+
+    return;
+}
+
+
+
 vector<string> c_rsfl() {
     random_device rd;
     minstd_rand gen(rd());

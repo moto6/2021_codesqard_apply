@@ -28,5 +28,5 @@ void c_print(Cube* handler);
 void c_init(Cube* handler);
 vector<string> c_s2task(string s);
 vector<string> c_rsfl();
-
+void c_helper(void);
 #endif
