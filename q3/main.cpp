@@ -20,6 +20,7 @@ int main(void) {
     c_init(&Chandler);
     string buf,testbuffer;
     queue<string> tasks;
+    vector<string> ins_v
     int iter = 0;
     
     while (1) {
@@ -30,26 +31,33 @@ int main(void) {
         if (buf == "Q" || buf == "q") {
             curTime = time(NULL);
 		    cout << "Elapsed time : "<< to_string(curTime-startTime)<<endl; 
-            cout << "Add implementation : " << endl;
+            cout << "Additional implemented functions : " << endl;
+            cout << "\tRandom Shuffle //  Time Display // Fit all sides"<<endl;
             cout << "Number of operations : " << iter << endl;
             cout << "\nBye~";
             break;
         }
-        else if (buf[0] =='T'){
+        else if (buf[0] =='T'){// 테스트 케이스 돌리기
             testapp((int)(buf[1]-'0'));
         }
-        else if (buf[0] =='@'){//큐브의 무작위 섞기 기능
-            vector<string> ins_v = c_rsfl();
-            for (auto i : ins_v) {
-                tasks.push(i);
-            }
-        }
         else {
-            vector<string> ins_v = c_s2task(buf);
-            for (auto i : ins_v) {
-                tasks.push(i);
+
+            //입력 처리
+            if (buf =="@"){//큐브의 무작위 섞기 기능
+                ins_v = c_rsfl();
+                for (auto i : ins_v) {
+                    cout << i <<endl;
+                    tasks.push(i);
+                }
             }
-            
+            else {
+                ins_v = c_s2task(buf);
+                for (auto i : ins_v) {
+                    tasks.push(i);
+                }
+            }
+
+
             //cube adjust && result print
             while (!tasks.empty()) {
                 string action_item = tasks.front();
