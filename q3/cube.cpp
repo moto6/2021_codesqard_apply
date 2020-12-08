@@ -7,7 +7,7 @@
 #include <queue>
 #include <algorithm>
 #include <cstdio>
-
+#include <random>
 using namespace std;
 
 
@@ -153,14 +153,21 @@ void c_print(Cube* handler) {
 }
 
 vector<string> c_rsfl() {
-    vector<string> add_task;
-    //cube random shuffle
-    string rad= "RULB";
-    //char sub[] = "FRUBLD";
+    random_device rd;
+    minstd_rand gen(rd());
+    uniform_int_distribution<int> dis(0, 99);
     
+    vector<string> add_task;//cube random shuffle
+    //char sub[] = "FRUBLD";
+    string cmdlist[10]= {"R","U","L","B","F'","R'","U'","B'","L'","D'"};
+    
+    int count = dis(gen);
+    count = count%3;
+
+
     //랜덤값 뽑아서넣어주기
-    for (int i = 0; i < 4; i++) {
-        add_task.push_back(rad.substr(i, 1));
+    for (int i = 0; i < 5+count; i++) {
+        add_task.push_back(cmdlist[dis(gen)%10]);
     }
        
     return add_task;

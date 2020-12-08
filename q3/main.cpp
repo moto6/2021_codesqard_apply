@@ -38,6 +38,12 @@ int main(void) {
         else if (buf[0] =='T'){
             testapp((int)(buf[1]-'0'));
         }
+        else if (buf[0] =='@'){//큐브의 무작위 섞기 기능
+            vector<string> ins_v = c_rsfl();
+            for (auto i : ins_v) {
+                tasks.push(i);
+            }
+        }
         else {
             vector<string> ins_v = c_s2task(buf);
             for (auto i : ins_v) {
