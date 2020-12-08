@@ -35,7 +35,7 @@ typedef char cSide[3][3];
 
 
 bool CMD_isValid(string cin);
-int c_act(Cube* c, string s);
+int c_act(Cube* c,string s);
 vector<string> c_s2task(string s);
 vector<string> c_rsfl();
 void c_print(Cube* handler);
@@ -63,6 +63,7 @@ Cube Chandler;
 
 ///////////////
 int main(void) {
+    c_init(&Chandler);
     string buf,testbuffer;
     queue<string> tasks;
     while (1) {
@@ -116,12 +117,13 @@ int main(void) {
         }
 
         if (DEBUG && TESTMODULE == 5) {
+            
             cout << "TEST5 [c_act] :"<< " F R U B L D\n"
                 <<"insert string CMD>> ";
             cin >> testbuffer;
             if (CMD_isValid(testbuffer)) {
                 c_act(&Chandler,testbuffer);
-                cout << "  =====   After    ======" << endl;
+                cout << "  \n\n=====  After spin  ======\n" << endl;
                 c_print(&Chandler);
             }
             else {
@@ -272,6 +274,8 @@ bool CMD_isValid(string cin) {
     const static char CMD_LIST[] = "FRUBLD";//len = 6
     vector<string> CMD_LIST_v = {
         "F'","R'","U'","B'","L'","D'",
+        //added
+        "C!"
     };
 
     if (cin.length() == 1) {
@@ -293,10 +297,12 @@ bool CMD_isValid(string cin) {
 }
 
 
-int c_act(Cube* c, string s) {
+int c_act(Cube* c,string s) {
     //명령에 따라서 큐브를 실제로 동작시킴
     //"F'","R'","U'","B'","L'","D'",
-    register char temp[3];
+    char temp[3];
+    //char* temp[3];
+    //char *ss;
     if (s == "F'") {
         // m4<<bot<<m2<<top
         temp[0] = c->m4[0][0];
@@ -319,6 +325,7 @@ int c_act(Cube* c, string s) {
         c->top[2][1] = temp[1];
         c->top[2][2] = temp[2];
     }
+   
     else if (s == "F") {
         // top<<m2<<bot<<m4
         temp[0] = c->top[2][0];
@@ -498,7 +505,7 @@ int c_act(Cube* c, string s) {
     }
     else if (s == "L") {
         //m3 << bot << m1 << top
-        temp[0] = c->m3[0][2];
+        temp[0] = (c->m3[0][2]);
         temp[1] = c->m3[1][2];
         temp[2] = c->m3[2][2];
         //
@@ -563,9 +570,17 @@ int c_act(Cube* c, string s) {
         c->m1[2][1] = temp[1];
         c->m1[2][2] = temp[2];
     }
+
+    else if(s == "C") {
+        c_print(c);
+    }
+    
     else {
         //drop!
         //
+        
+
+
         cout << "unknown : " << s << endl;
     }
 
