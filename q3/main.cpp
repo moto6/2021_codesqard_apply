@@ -50,7 +50,7 @@ void c_init(Cube* handler);
 //
 const string PROMPT = "CUBE> ";
 const bool DEBUG = 1; // 1:debug // 0:deploy
-const int TESTMODULE = 1;
+const int TESTMODULE = 5;
 // 1 : init, print
 // 2 : string to task
 // 3 : Random shuffle function ->c_rsfl
@@ -116,7 +116,8 @@ int main(void) {
         }
 
         if (DEBUG && TESTMODULE == 5) {
-            cout << "TEST5 [c_act] insert string CMD>> ";
+            cout << "TEST5 [c_act] :"<< " F R U B L D\n"
+                <<"insert string CMD>> ";
             cin >> testbuffer;
             if (CMD_isValid(testbuffer)) {
                 c_act(&Chandler,testbuffer);
@@ -210,17 +211,7 @@ void c_print(Cube* handler) {
         cout << '\n';
     }
     cout << endl;
-    /*
-    for (int j = 0; j < 3; j++) {
-        for (int k = 0; k < 3; k++) {
-            cout << csp[i][j][k] << ' ';
-        }
-        cout << endl;
-    }
-    if (i == 0 || i == 4) {
-        cout << "\n\n" << endl;
-    }
-    */
+    
     return;
 }
 
@@ -332,45 +323,45 @@ int c_act(Cube* c, string s) {
         // top<<m2<<bot<<m4
         temp[0] = c->top[2][0];
         temp[1] = c->top[2][1];
-        temp[2] = c->top[2][1];
+        temp[2] = c->top[2][2];
         //
         c->top[2][0] = c->m2[0][2];
         c->top[2][1] = c->m2[1][2];
-        c->top[2][1] = c->m2[1][2];
+        c->top[2][2] = c->m2[2][2];
         //
-        c->m2[0][2] = c->bot[0][1];
+        c->m2[0][2] = c->bot[0][0];
         c->m2[1][2] = c->bot[0][1];
-        c->m2[1][2] = c->bot[0][1];
+        c->m2[2][2] = c->bot[0][2];
         //
-        c->bot[0][0] = c->m4[1][0];
+        c->bot[0][0] = c->m4[0][0];
         c->bot[0][1] = c->m4[1][0];
-        c->bot[0][1] = c->m4[1][0];
+        c->bot[0][2] = c->m4[2][0];
         //
-        c->m4[0][0] = temp[1];
+        c->m4[0][0] = temp[0];
         c->m4[1][0] = temp[1];
-        c->m4[1][0] = temp[1];
+        c->m4[2][0] = temp[2];
     }
     else if (s == "R'") {
         // top << m3 << bot << m1
-        temp[0] = c->top[1][2];
+        temp[0] = c->top[0][2];
         temp[1] = c->top[1][2];
-        temp[2] = c->top[1][2];
+        temp[2] = c->top[2][2];
         //
-        c->top[0][2] = c->m3[1][0];
+        c->top[0][2] = c->m3[0][0];
         c->top[1][2] = c->m3[1][0];
-        c->top[2][2] = c->m3[1][0];
+        c->top[2][2] = c->m3[2][0];
         //
-        c->m3[0][0] = c->bot[1][2];
+        c->m3[0][0] = c->bot[0][2];
         c->m3[1][0] = c->bot[1][2];
-        c->m3[2][0] = c->bot[1][2];
+        c->m3[2][0] = c->bot[2][2];
         //
-        c->bot[0][2] = c->m1[1][2];
+        c->bot[0][2] = c->m1[0][2];
         c->bot[1][2] = c->m1[1][2];
-        c->bot[2][2] = c->m1[1][2];
+        c->bot[2][2] = c->m1[2][2];
         //
-        c->m1[0][2] = temp[1];
+        c->m1[0][2] = temp[0];
         c->m1[1][2] = temp[1];
-        c->m1[2][2] = temp[1];
+        c->m1[2][2] = temp[2];
         //
     }
     else if (s == "R") {
@@ -397,25 +388,25 @@ int c_act(Cube* c, string s) {
     }
     else if (s == "U'") {
         // m1 << m2 << m3 << m4
-        temp[0] = c->m1[0][1];
+        temp[0] = c->m1[0][0];
         temp[1] = c->m1[0][1];
-        temp[2] = c->m1[0][1];
+        temp[2] = c->m1[0][2];
         //
-        c->m1[0][0] = c->m2[0][1];
+        c->m1[0][0] = c->m2[0][0];
         c->m1[0][1] = c->m2[0][1];
-        c->m1[0][2] = c->m2[0][1];
+        c->m1[0][2] = c->m2[0][2];
         //
-        c->m2[0][0] = c->m3[0][1];
+        c->m2[0][0] = c->m3[0][0];
         c->m2[0][1] = c->m3[0][1];
-        c->m2[0][2] = c->m3[0][1];
+        c->m2[0][2] = c->m3[0][2];
         //
-        c->m3[0][0] = c->m4[0][1];
+        c->m3[0][0] = c->m4[0][0];
         c->m3[0][1] = c->m4[0][1];
-        c->m3[0][2] = c->m4[0][1];
+        c->m3[0][2] = c->m4[0][2];
         //
-        c->m4[0][0] = temp[1];
+        c->m4[0][0] = temp[0];
         c->m4[0][1] = temp[1];
-        c->m4[0][2] = temp[1];
+        c->m4[0][2] = temp[2];
     }
     else if (s == "U") {
         //m4 << m3 << m2 << m1
@@ -441,25 +432,25 @@ int c_act(Cube* c, string s) {
     }
     else if (s == "B'") {
         // top << m4 << bot << m2
-        temp[0] = c->top[0][1];
+        temp[0] = c->top[0][0];
         temp[1] = c->top[0][1];
-        temp[2] = c->top[0][1];
+        temp[2] = c->top[0][2];
         //
-        c->top[0][0] = c->m4[1][2];
+        c->top[0][0] = c->m4[0][2];
         c->top[0][1] = c->m4[1][2];
-        c->top[0][2] = c->m4[1][2];
+        c->top[0][2] = c->m4[2][2];
         //
-        c->m4[0][2] = c->bot[2][1];
+        c->m4[0][2] = c->bot[2][0];
         c->m4[1][2] = c->bot[2][1];
-        c->m4[2][2] = c->bot[2][1];
+        c->m4[2][2] = c->bot[2][2];
         //
-        c->bot[2][0] = c->m2[1][0];
+        c->bot[2][0] = c->m2[0][0];
         c->bot[2][1] = c->m2[1][0];
-        c->bot[2][2] = c->m2[1][0];
+        c->bot[2][2] = c->m2[2][0];
         //
-        c->m2[0][0] = temp[1];
+        c->m2[0][0] = temp[0];
         c->m2[1][0] = temp[1];
-        c->m2[2][0] = temp[1];
+        c->m2[2][0] = temp[2];
     }
     else if (s == "B") {
         //m2 << bot << m4 << top
@@ -485,25 +476,25 @@ int c_act(Cube* c, string s) {
     }
     else if (s == "L'") {
         // top << m1 << bot << m3
-        temp[0] = c->top[1][0];
+        temp[0] = c->top[0][0];
         temp[1] = c->top[1][0];
-        temp[2] = c->top[1][0];
+        temp[2] = c->top[2][0];
         //
-        c->top[0][0] = c->m1[1][0];
+        c->top[0][0] = c->m1[0][0];
         c->top[1][0] = c->m1[1][0];
-        c->top[2][0] = c->m1[1][0];
+        c->top[2][0] = c->m1[2][0];
         //
-        c->m1[0][0] = c->bot[1][0];
+        c->m1[0][0] = c->bot[0][0];
         c->m1[1][0] = c->bot[1][0];
-        c->m1[2][0] = c->bot[1][0];
+        c->m1[2][0] = c->bot[2][0];
         //
-        c->bot[0][0] = c->m3[1][2];
+        c->bot[0][0] = c->m3[0][2];
         c->bot[1][0] = c->m3[1][2];
-        c->bot[2][0] = c->m3[1][2];
+        c->bot[2][0] = c->m3[2][2];
         //
-        c->m3[0][2] = temp[1];
+        c->m3[0][2] = temp[0];
         c->m3[1][2] = temp[1];
-        c->m3[2][2] = temp[1];
+        c->m3[2][2] = temp[2];
     }
     else if (s == "L") {
         //m3 << bot << m1 << top
@@ -530,25 +521,25 @@ int c_act(Cube* c, string s) {
     }
     else if (s == "D'") {
         // m1 << m4 << m3 << m2
-        temp[0] = c->m1[2][1];
+        temp[0] = c->m1[2][0];
         temp[1] = c->m1[2][1];
-        temp[2] = c->m1[2][1];
+        temp[2] = c->m1[2][2];
         //
-        c->m1[2][0] = c->m4[2][1];
+        c->m1[2][0] = c->m4[2][0];
         c->m1[2][1] = c->m4[2][1];
-        c->m1[2][2] = c->m4[2][1];
+        c->m1[2][2] = c->m4[2][2];
         //
-        c->m4[2][0] = c->m3[2][1];
+        c->m4[2][0] = c->m3[2][0];
         c->m4[2][1] = c->m3[2][1];
-        c->m4[2][2] = c->m3[2][1];
+        c->m4[2][2] = c->m3[2][2];
         //
-        c->m3[2][0] = c->m2[2][1];
+        c->m3[2][0] = c->m2[2][0];
         c->m3[2][1] = c->m2[2][1];
-        c->m3[2][2] = c->m2[2][1];
+        c->m3[2][2] = c->m2[2][2];
         //
-        c->m2[2][0] = temp[1];
+        c->m2[2][0] = temp[0];
         c->m2[2][1] = temp[1];
-        c->m2[2][2] = temp[1];
+        c->m2[2][2] = temp[2];
     }
     else if (s == "D") {
         //m2 << m3 << m4 <<m1
