@@ -19,6 +19,8 @@ int main(void) {
     queue<string> tasks;
     vector<string> ins_v;
     
+    cout << "\n\n=====  Rubik's Cube Simulation  =====\n";
+    cout << "H : help  // Q : Exit \n"<<endl;
     c_init(&Chandler);
     int iter = 0;
     
@@ -33,6 +35,8 @@ int main(void) {
         }
         else if (buf[0] =='T'){                 // T# : 테스트 케이스
             testapp((int)(buf[1]-'0'));
+            iter = 0;//테스트시 iter 0초기화
+            //T1명령어 사용으로 큐브를 초기화하는경우, 프로그램이 의도치않게 종료됨
         }
         else if (buf =="@"){                    // @ : 무작위 섞기 기능
             ins_v = c_rsfl();

@@ -31,8 +31,12 @@ void testapp(int mod) {
 
     //test1 : init, and printer
     if (DEBUG && TESTMODULE == 1) {
-        cout << "TEST1 [printer] go? insert \"go\">> ";
+        cout << "TEST1 [cube init & print]\n";
+        cout << "gogo? (Y/N) : ";
         cin >> testbuffer;
+        if(testbuffer == "N" || testbuffer == "n" ) {
+            return;
+        }
         c_init(&Chandler);
         c_print(&Chandler);
         cout  << endl;
@@ -41,7 +45,8 @@ void testapp(int mod) {
     //test2 : c_s2task
     //string to task : UUR -> U,U,R
     else if (DEBUG && TESTMODULE == 2) {
-        cout << "TEST2 [c_s2task] insert String>> ";
+        cout << "TEST2 [string to task converter]\n";
+        cout << "insert String : ";
         cin >> testbuffer;
         vector<string> tv = c_s2task(testbuffer);
         for (auto i : tv) {
@@ -51,8 +56,11 @@ void testapp(int mod) {
 
     //test 3: Random tasks
     else if (DEBUG && TESTMODULE == 3) {
-        cout << "TEST4 [Random tasks] \n"
-            <<"Generate Random tasks? (Press Any Key+ ENTER)";
+        cout << "TEST3 [Random tasks Gen] \n";
+        cout << "Generate Random tasks? (Y/N) : ";
+        if(testbuffer == "N" || testbuffer == "n" ) {
+            return;
+        }
         cin >> testbuffer;
         vector<string> tv = c_rsfl();
         for (auto i : tv) {
@@ -62,7 +70,7 @@ void testapp(int mod) {
 
     //test 4 : CMD_isValid
     else if (DEBUG && TESTMODULE == 4) {
-        cout << "TEST4 [CMD_isValid] insert char>> ";
+        cout << "TEST4 [CMD_isValid] insert : ";
         cin >> testbuffer;
         if (CMD_isValid(testbuffer)) {
             cout << testbuffer << "is Valid Commad!!" << endl;
@@ -75,8 +83,8 @@ void testapp(int mod) {
     //test 5 : action, do cube sim core
     else if (DEBUG && TESTMODULE == 5) {
         
-        cout << "TEST5 [c_act] :"<< " F R U B L D\n"
-            <<"insert string CMD>> ";
+        cout << "TEST5 [cube spin test : F R U B L D or +\'(prime=reverse) ]\n";
+        cout << "insert string CMD : ";
         cin >> testbuffer;
         if (CMD_isValid(testbuffer)) {
             c_act(&Chandler,testbuffer);
@@ -151,7 +159,7 @@ void c_print(Cube* handler) {
 
 
 void c_helper(void) {
-    cout << "\n\n\n ===== Help RubixCube Sim ===== "<<endl;
+    cout << "\n\n\n===== Help RubixCube Sim =====\n"<<endl;
     cout << "1) Cube simulator"<<endl;
     cout << "   - Press any key down blow" <<endl;
     cout << "    : <F>   <R>   <U>   <B>   <L>  <D>"<<endl;
@@ -163,12 +171,16 @@ void c_helper(void) {
     cout << "\n" <<endl;
     cout << "3) Unit Test "<<endl;
     cout << "   - <T1>, <T2>, <T3>, <T4>, <T5>" <<endl;
+    cout << "     - T1 : Cube Initialize and print test"<<endl;
+    cout << "     - T2 : insert commnad string, and convert to task "<<endl;
+    cout << "     - T3 : Random shuffle function "<<endl;
+    cout << "     - T4 : Validation check, inserted command from user "<<endl;
+    cout << "     - T5 : Cube activation only Single shot"<<endl;
     cout << "\n" <<endl;
     cout << "4) Additional functions" <<endl;
     cout << "   - Random Shuffle : <@>" <<endl;
     cout << "   - Fit all sides : <> ,no insert auto triggered" << endl;
-    cout << " ===== Help End =====  " << endl;
-    cout << "\n\n\n" << endl;
+    cout << " \n===== Help End =====  " << endl;
     return;
 }
 
@@ -181,7 +193,7 @@ void c_finalize(time_t *startTime, int iter) {
     cout << "Additional implemented functions : " << endl;
     cout << "\t- Random Shuffle \n\t- Time Display \n\t- Fit all sides"<<endl;
     cout << "Number of operations : " << iter << endl;
-    cout << "\n \tEND";
+    cout << "\n \t< END > \n\n";
     return;
 }
 
