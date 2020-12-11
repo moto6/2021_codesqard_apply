@@ -5,8 +5,12 @@
 #include <stack>
 #include <queue>
 #include <algorithm>
-#include <cstdio>
-#include <random>
+
+//C Lib
+#include <cstdlib>
+#include <ctime>
+
+
 using namespace std;
 
 extern Cube Chandler;
@@ -197,19 +201,17 @@ bool is_Fitallsides(Cube* handler) {
 }
 
 vector<string> c_rsfl() {
-    random_device rd;
-    minstd_rand gen(rd());
-    uniform_int_distribution<int> dis(0, 99);
+    srand((unsigned int)time(NULL));
     
     vector<string> add_task;//cube random shuffle
     //char sub[] = "FRUBLD";
     string cmdlist[10]= {"R","U","L","B","F'","R'","U'","B'","L'","D'"};  
-    int count = dis(gen);
-    count = count%3;
+    int count = rand();
+    count = count%7;// 최소 5회~12회의 랜덤 명령어가 입력되도록
 
     //랜덤값 뽑아서넣어주기
     for (int i = 0; i < 5+count; i++) {
-        add_task.push_back(cmdlist[dis(gen)%10]);
+        add_task.push_back(cmdlist[rand()%10]);
     }
     return add_task;
 }
