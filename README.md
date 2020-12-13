@@ -8,7 +8,8 @@
 - 테스트환경 : GCC (makefile)
 #
 ## 3번 루빅스 큐브 시뮬레이터 도움말
-- 데모 : https://youtu.be/GiEvbsJhUXk
+- ![q3 demo](./img/q3demo.png)
+- [데모영상 링크](https://youtu.be/GiEvbsJhUXk) : https://youtu.be/GiEvbsJhUXk
 - 프롬프트 명령어
   - Q : 종료기능
   - @ : 무작위 섞기 기능
