@@ -54,70 +54,44 @@ public class Cube {
 		this.rbix[2][xj] = s.charAt(2);
 	}
 	
-	public void action (String buf,Cube c) {
-		//System.out.print("\naction : " + buf + "\n\n");
-		//int len = buf.length();	
-		//for(int i=0 ; i<len ; i++) {
-			//rot
-			/*
-			char cmd = buf.charAt(i);
-			boolean prime = false;
-			if( (len < i+1) && ('\'' == buf.charAt(i+1)) ) {
-				prime = true;
-			}else {}
-			*/
-		while(true){
-			//System.out.print(buf); :명령어 확인용
+	public void action(String buf, Cube c) {
+
+		while (true) {// System.out.print(buf); :명령어 확인용
 			Qstring sptr = new Qstring(buf);
-			//삭제예정
-			//String spointer = buf;  //System.out.print("\nBeFORe CMD : "+sptr+"\n");
+			// 삭제예정// String spointer = buf; //System.out.print("\nBeFORe CMD : "+sptr+"\n");
 			int cmdnum = cmd_strQ_pop(sptr);
-			
-			if(cmdnum == 0) {
-				c.u_prime();
+
+			if (cmdnum == 0) {
+				c.U_prime();
+			} else if (cmdnum == 1) {
+				c.U_nomal();
+			} else if (cmdnum == 2) {
+				c.R_prime();
+			} else if (cmdnum == 3) {
+				c.R_nomal();
+			} else if (cmdnum == 4) {
+				c.L_prime();
+			} else if (cmdnum == 5) {
+				c.L_nomal();
+			} else if (cmdnum == 6) {
+				c.B_prime();
+			} else if (cmdnum == 7) {
+				c.B_nomal();
+			} else {
+				System.out.println("cmd_strQ_pop ERROR : "+cmdnum);
 			}
-			else if(cmdnum == 1) {
-				c.u_nomal();
-			}
-			
 			buf = sptr.CMD;
-			if(buf.length() == 0) {
+			if (buf.length() == 0) {
 				break;
 			}
 		}
-			
-		//}
-			/*
-			if(cmd == 'U') {
-				if(prime == false) {
-					System.out.print("\nU nomal\n");
-					c.u_nomal();
-					
-				}
-				else {
-					System.out.print("\nU prime\n");
-					
-				}
-			}
-			else if(cmd == 'R') {
-				
-			}
-			else if(cmd == 'L') {
-				
-			}
-			else if(cmd == 'B') {
-				
-			}
-			*/
-			c.cprint();
-			
-		
-		
-		
+
+		c.cprint();
+
 		buf = "";
 		return;
 	}
-	
+
 	int cmd_strQ_pop(Qstring ins) {
 		//VALID_CMD = {"U'","U","R'","R","L'","L","B'","B"};
 		int ret = -1;
@@ -136,20 +110,60 @@ public class Cube {
 		return ret;
 	}
 	
+	void U_prime() {
+		char temp = this.rbix[0][2];
+		this.rbix[0][2] = this.rbix[0][1]; 
+		this.rbix[0][1] = this.rbix[0][0];
+		this.rbix[0][0] = temp;
+	}
 	
-	void u_nomal() {
-		char temp = '#';
-		temp = this.rbix[0][0];
+	void U_nomal() {
+		char temp = this.rbix[0][0];
 		this.rbix[0][0] = this.rbix[0][1]; 
 		this.rbix[0][1] = this.rbix[0][2];
 		this.rbix[0][2] = temp;
 	}
 	
-	void u_prime() {
-		char temp = '#';
-		temp = this.rbix[0][2];
-		this.rbix[0][2] = this.rbix[0][1]; 
-		this.rbix[0][1] = this.rbix[0][0];
+	
+	void R_prime() {
+		char temp = this.rbix[2][2];
+		this.rbix[2][2] = this.rbix[1][2];
+		this.rbix[1][2] = this.rbix[0][2];
+		this.rbix[0][2] = temp;
+	}
+	
+	void R_nomal() {
+		char temp = this.rbix[0][2];
+		this.rbix[0][2] = this.rbix[1][2];
+		this.rbix[1][2] = this.rbix[2][2];
+		this.rbix[2][2] = temp;
+	}
+	
+	void L_prime() {
+		char temp = this.rbix[2][0];
+		this.rbix[2][0] = this.rbix[1][0];
+		this.rbix[1][0] = this.rbix[0][0];
 		this.rbix[0][0] = temp;
 	}
+	
+	void L_nomal() {
+		char temp = this.rbix[0][0];
+		this.rbix[0][0] = this.rbix[1][0];
+		this.rbix[1][0] = this.rbix[2][0];
+		this.rbix[2][0] = temp;
+	}
+	
+	void B_prime() {
+		char temp = this.rbix[2][2];
+		this.rbix[2][2] = this.rbix[2][1]; 
+		this.rbix[2][1] = this.rbix[2][0];
+		this.rbix[2][0] = temp;
+	}
+	void B_nomal() {
+		char temp = this.rbix[2][0];
+		this.rbix[2][0] = this.rbix[2][1]; 
+		this.rbix[2][1] = this.rbix[2][2];
+		this.rbix[2][2] = temp;
+	}
+	
 }
