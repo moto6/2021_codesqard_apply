@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Prompt {
 	static final String PROMPT = "CUBE> "; 
-	static final char[] VALID_CMD = {'U','R','L','B'};
+	static final String[] VALID_CMD = {"U'","U","R'","R","L'","L","B'","B"};
 	public static void main(String[] args) {
 		
 		Cube c = new Cube();
@@ -24,7 +24,6 @@ public class Prompt {
 			}
 			else {
 				buf = cmd_senitizer(buf);
-				System.out.println(buf);
 				c.action(buf,c);
 			}
 			
@@ -47,20 +46,15 @@ public class Prompt {
 		int len = buf.length();
 		
 		for(int i=0 ; i<len ; i++) {
-			
-			for(int j=0 ; j<4 ; j++) {
-				
-				if( (len < i+1) && (buf.substring(i,i+1).equals("\'")) && VALID_CMD[j] == buf.charAt(i)) {
-					ret += buf.substring(i, i+2);
+			for(int j=0 ; j<8 ; j++) {
+				if (buf.startsWith(VALID_CMD[j])) {
+					//System.out.println("VALID_CMD:" + VALID_CMD[j]);
+					int length = VALID_CMD[j].length();
+					ret += buf.substring(i, i+length);
+					//System.out.println("substring:" +buf.substring(i, i+2));
+					
 					i++;
 					break;
-				}
-				else if(VALID_CMD[j] == buf.charAt(i)) {
-					ret += Character.toString(VALID_CMD[j]);
-					break;
-				}
-				else {
-					
 				}
 				
 			}
