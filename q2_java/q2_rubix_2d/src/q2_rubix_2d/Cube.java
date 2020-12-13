@@ -13,10 +13,12 @@ public class Cube {
 	private char[][]rbix = new char[3][3];
 	
 	public static void main(String[] args) {
+		System.out.println("Prompt파일을 실행해주세요!");
+		
 		// for test
-		Cube test = new Cube();
-		test.cclear();
-		test.cprint();
+		//Cube test = new Cube();
+		//test.cclear();
+		//test.cprint();
 	}
 	
 	void cclear() {
