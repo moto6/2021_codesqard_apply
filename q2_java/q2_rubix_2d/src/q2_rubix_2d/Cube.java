@@ -10,6 +10,8 @@ public class Cube {
 		test.cprint();
 	}
 	
+	
+	
 	void cclear() {
 		for(int i=0 ; i<3 ; i++) {
 			for(int j=0 ; j<3 ; j++) {
@@ -18,6 +20,8 @@ public class Cube {
 		}
 		return;
 	}
+	
+	
 	
 	void cprint() {
 		for(int i=0 ; i<3 ; i++) {
@@ -29,15 +33,21 @@ public class Cube {
 		return;	
 	}
 	
+	
+	
 	void setpoint(int yi, int xj, char ins) {
 		this.rbix[yi][xj] = ins; 
 	}
+	
+	
 	
 	void setrow(int yi, String s) {//ga ro <-->
 		this.rbix[yi][0] = s.charAt(0);
 		this.rbix[yi][1] = s.charAt(1);
 		this.rbix[yi][2] = s.charAt(2);
 	}
+	
+	
 	
 	void setcol_se(int xj, String s) {//sea ro ^V
 		this.rbix[0][xj] = s.charAt(0);
@@ -46,4 +56,61 @@ public class Cube {
 	}
 	
 	
+	
+	public void action (String buf,Cube c) {
+		System.out.print("\naction : " + buf + "\n\n");
+		int len = buf.length();	
+		for(int i=0 ; i<len ; i++) {
+			//rot
+			char cmd = buf.charAt(i);
+			boolean prime = false;
+			if( (len < i+1) && ('\'' == buf.charAt(i+1)) ) {
+				prime = true;
+			}else {}
+			
+			
+			if(cmd == 'U') {
+				if(prime == false) {
+					System.out.print("\nU nomal\n");
+					c.u_nomal();
+					
+				}
+				else {
+					System.out.print("\nU prime\n");
+					c.u_prime();
+				}
+			}
+			else if(cmd == 'R') {
+				
+			}
+			else if(cmd == 'L') {
+				
+			}
+			else if(cmd == 'B') {
+				
+			}
+			c.cprint();
+			
+		}
+		
+		
+		buf = "";
+		return;
+	}
+	
+	void u_nomal() {
+		char temp = '#';
+		temp = this.rbix[0][0];
+		this.rbix[0][0] = this.rbix[0][1]; 
+		this.rbix[0][1] = this.rbix[0][2];
+		this.rbix[0][2] = temp;
+	}
+	
+	void u_prime() {
+		char temp = '#';
+		temp = this.rbix[0][2];
+		this.rbix[0][2] = this.rbix[0][1]; 
+		this.rbix[0][1] = this.rbix[0][0];
+		this.rbix[0][0] = temp;
+	}
 }
